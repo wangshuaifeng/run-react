@@ -1,23 +1,50 @@
 import * as React  from 'react';
+import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import Buy from './buy';
+import Home from './home';
+import './App.scss';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
-const initialState = { count: 0 };
-type State = Readonly<typeof initialState>
 
-class App extends React.Component<{}, State> {
-
-  public state: State = initialState;
+class App extends React.Component<{}, {}> {
   
-  public render() {
-    const { count } = this.state;
 
+  public render() {
     return (
-      <div>
-        <button onClick={this.handleIncrement}>增加</button>
-        <p>当前计数：{count}</p>
-      </div>
+      <Router>
+        <div className="app">
+          <AppBar position="static">
+            <Toolbar>
+                Photos
+            </Toolbar>
+          </AppBar>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/buy">buy</Link>
+            </li>
+          </ul>
+          <hr />
+          <Switch>
+            <Route path="/" exact={true} component={Home} />
+            <Route path="/buy" component={Buy} />
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+      </Router>
     )
   }
-  private handleIncrement = () => this.setState(prevState => ({count: prevState.count + 1}))
 }
+
+const NoMatch = () => (
+  <div>
+    <h3>
+      404
+    </h3>
+  </div>
+);
 
 export default App;

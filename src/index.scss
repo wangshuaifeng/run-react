@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
+
+html {
+  max-width: 540Px;
+  min-width: 320Px;
+  height: 100%;
+  margin: 0 auto;
+}

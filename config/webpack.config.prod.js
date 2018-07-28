@@ -238,7 +238,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
+            exclude: [/\.js$/, /\.html$/, /\.json$/, /\.sass$/, /\.scss$/, /.less$/, /.svg$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
@@ -249,17 +249,7 @@ module.exports = {
             use: [
               require.resolve('style-loader'),
               require.resolve('css-loader'),
-              {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                  ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
-                  plugins: () => [
-                    autoprefixer({
-                      browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
-                    }),
-                  ],
-                },
-              },
+              require.resolve('postcss-loader'),
               {
                 loader: require.resolve('sass-loader'),
                 options: {
