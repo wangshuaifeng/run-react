@@ -13,7 +13,7 @@ class App extends React.Component<{}, {}> {
   public render() {
     return (
       <Router>
-        <div className="app">
+          <div className="app">
           <AppBar position="static">
             <Toolbar>
                 Photos
